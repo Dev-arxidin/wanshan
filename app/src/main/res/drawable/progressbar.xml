@@ -3,7 +3,7 @@
     <!--默认颜色-->
     <item android:id="@android:id/background">
         <shape>
-            <solid android:color="#9C9B9B" />
+            <solid android:color="#EDE6E6" />
         </shape>
     </item>
     <!--进度颜色-->
