@@ -1,4 +1,4 @@
-package com.cat.wanshan;
+package com.cat.wanshan.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.Window;
+
+import com.cat.wanshan.R;
 
 public class MainActivity extends Activity {
 

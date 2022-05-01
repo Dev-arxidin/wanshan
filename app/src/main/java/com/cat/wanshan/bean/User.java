@@ -1,4 +1,4 @@
-package com.cat.wanshan;
+package com.cat.wanshan.bean;
 
 
 /**
@@ -10,7 +10,7 @@ public class User {
     private String email;        //邮箱
     private String phonenum;        //手机号码
 
-    User(String name, String password, String email, String phonenum) {
+    public User(String name, String password, String email, String phonenum) {
         this.name = name;
         this.password = password;
         this.email = email;

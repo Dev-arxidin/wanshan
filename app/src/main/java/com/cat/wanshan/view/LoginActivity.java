@@ -1,6 +1,4 @@
-package com.cat.wanshan;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.cat.wanshan.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,16 +6,19 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.cat.wanshan.DBOpenHelper;
+import com.cat.wanshan.R;
+import com.cat.wanshan.bean.User;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startActivity(new Intent(this, DownloadActivity.class));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//隐藏状态栏
         Objects.requireNonNull(getSupportActionBar()).hide();//隐藏标题栏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);//禁止横屏

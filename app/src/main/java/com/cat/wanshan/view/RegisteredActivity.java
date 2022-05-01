@@ -1,4 +1,4 @@
-package com.cat.wanshan;
+package com.cat.wanshan.view;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.cat.wanshan.DBOpenHelper;
+import com.cat.wanshan.R;
 
 public class RegisteredActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText et_rgsName, et_rgsEmail, et_rgsPhoneNum, et_rgsPsw1, et_rgsPsw2;

@@ -1,10 +1,12 @@
-package com.cat.wanshan;
+package com.cat.wanshan.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class account extends AppCompatActivity {
+import com.cat.wanshan.R;
+
+public class AccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
