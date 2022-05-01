@@ -20,7 +20,7 @@ import com.kongzue.baseokhttp.listener.OnDownloadListener;
 import java.io.File;
 import java.util.List;
 
-public class DownloadActivity extends BaseActivity {
+public class DownloadActivity extends BaseActivity implements OnDownloadListener {
     public static final String TAG = "UploadActivity";
 
     private ProgressBar mProgressBar;
@@ -34,16 +34,14 @@ public class DownloadActivity extends BaseActivity {
     protected void initView() {
         mProgressBar = findViewById(R.id.progress_bar_view);
         TextView btnClick = findViewById(R.id.download_btn);
-        btnClick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkPermission(view);
-            }
-        });
+        btnClick.setOnClickListener(view -> checkPermission());
     }
 
 
-    public void checkPermission(View v) {
+    /**
+     * 检查是否有读写权限，有则调用下载
+     */
+    public void checkPermission() {
         if (!PermissionUtils.isGranted(PermissionConstants.STORAGE)) {
             PermissionUtils.permissionGroup(PermissionConstants.STORAGE).callback(new PermissionUtils.FullCallback() {
                 @Override
@@ -62,29 +60,30 @@ public class DownloadActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 请求下载接口
+     */
     private void downloadFile() {
-        final String url = "http://cdn.to-future.net/apk/tofuture.apk";
+        final String downloadUrl = "http://cdn.to-future.net/apk/tofuture.apk";
         File downloadFile = new File(new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "wanshan"), "to-future.apk");
-        HttpRequest.DOWNLOAD(mContext, url, downloadFile,
-                new OnDownloadListener() {
-                    @Override
-                    public void onDownloadSuccess(File file) {
-                        Log.d(TAG, "文件已下载完成:" + file.getAbsolutePath());
-                    }
-
-                    @Override
-                    public void onDownloading(int progress) {
-                        mProgressBar.setProgress(progress);
-                        Log.d(TAG, "progress:" + progress);
-                    }
-
-                    @Override
-                    public void onDownloadFailed(Exception e) {
-                        Log.d(TAG, "download fail:" + e);
-                    }
-                }
-        );
+        HttpRequest.DOWNLOAD(mContext, downloadUrl, downloadFile, this);
     }
 
 
+    @Override
+    public void onDownloadSuccess(File file) {
+        Log.d(TAG, "文件已下载完成:" + file.getAbsolutePath());
+
+    }
+
+    @Override
+    public void onDownloading(int progress) {
+        mProgressBar.setProgress(progress);
+        Log.d(TAG, "progress:" + progress);
+    }
+
+    @Override
+    public void onDownloadFailed(Exception e) {
+        Log.d(TAG, "download fail:" + e);
+    }
 }
